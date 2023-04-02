@@ -1,4 +1,4 @@
-TESTE
+Teste
 para
 o
 tutorial
