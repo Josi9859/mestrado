@@ -8,6 +8,7 @@ library(janitor)
 # Transformei o arquivo em csv para evitar problemas de configuração.
 # Na importação já transformei a coluna no formato "Date" de dia, mês e ano.
 
+
 violenciaf <- read_csv("violenciaf.csv", col_types = cols(data = col_date(format = "%d/%m/%Y")))
 
 
@@ -55,6 +56,7 @@ vio07 <- violenciaf %>% group_by(uf, ano) %>% summarise(nrows=nrow(pick(everythi
 vio08 <- vio07 %>% group_by(uf,ano) %>%
                   tally() %>%
                   spread(ano, n)
+
 ## como vc observa, o vio8 não colocou no conteúdo a soma que está na coluna nrows, pois fiz exatamente
 ## como o exemplo do site. Por isso, para fazer o próximo, inseri a coluna "nrows".
 
@@ -84,3 +86,4 @@ vio10 <-  vio09 %>% mutate(sum = rowSums(across(where(is.numeric)), na.rm=TRUE))
 
 
 vio11 <-  vio10 %>% adorn_totals("row")
+
